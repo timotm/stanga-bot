@@ -27,14 +27,13 @@ controller.on('rtm_close', function() {
 controller.on('tick', function() {
 })
 
-controller.hears(['^!calpe$'], ['direct_message', 'direct_mention', 'mention', 'ambient'], function(bot, message) {
-  weather.findAsync({search: 'Calpe, Spain', degreeType: 'C'})
+controller.hears(['^!tenerife'], ['direct_message', 'direct_mention', 'mention', 'ambient'], function(bot, message) {
+  weather.findAsync({search: 'Tenerife, Spain', degreeType: 'C'})
     .then(result => reply(result))
     .catch(() => reply())
 
   function reply(weatherResult) {
-    var d = moment.preciseDiff(moment('2016-03-21 21:00'), moment())
-    bot.reply(message, `Calpe in ${d}!` + (weatherResult ? ` Current weather: ${weatherResult[0].current.temperature}?C, ${weatherResult[0].current.skytext}` : ''))
+    var d = moment.preciseDiff(moment('2017-01-21 11:20'), moment())
+    bot.reply(message, `Tenerife in ${d}!` + (weatherResult ? ` Current weather: ${weatherResult[0].current.temperature}?C, ${weatherResult[0].current.skytext}` : ''))
   }
 })
-
