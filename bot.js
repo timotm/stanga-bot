@@ -37,3 +37,15 @@ controller.hears(['^!tenerife'], ['direct_message', 'direct_mention', 'mention',
     bot.reply(message, `Tenerife in ${d}!` + (weatherResult ? ` Current weather: ${weatherResult[0].current.temperature}?C, ${weatherResult[0].current.skytext}` : ''))
   }
 })
+
+
+controller.hears(['^!(nizza)|(nice)'], ['direct_message', 'direct_mention', 'mention', 'ambient'], function(bot, message) {
+  weather.findAsync({search: 'Nice, France', degreeType: 'C'})
+    .then(result => reply(result))
+    .catch(() => reply())
+
+  function reply(weatherResult) {
+    var d = moment.preciseDiff(moment('2017-03-30 16:00'), moment())
+    bot.reply(message, `Nice in ${d}!` + (weatherResult ? ` Current weather: ${weatherResult[0].current.temperature}?C, ${weatherResult[0].current.skytext}` : ''))
+  }
+})
