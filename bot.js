@@ -39,7 +39,7 @@ controller.hears(['^!tenerife'], ['direct_message', 'direct_mention', 'mention',
 })
 
 
-controller.hears(['^!(nizza)|(nice)'], ['direct_message', 'direct_mention', 'mention', 'ambient'], function(bot, message) {
+controller.hears(['^!(nizza|nice)'], ['direct_message', 'direct_mention', 'mention', 'ambient'], function(bot, message) {
   weather.findAsync({search: 'Nice, France', degreeType: 'C'})
     .then(result => reply(result))
     .catch(() => reply())
