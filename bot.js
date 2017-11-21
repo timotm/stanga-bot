@@ -1,6 +1,7 @@
-const moment = require('moment-precise-range')
 const BPromise = require('bluebird')
 const weather = BPromise.promisifyAll(require('weather-js'))
+const moment = require('moment')
+const preciseDiff = require('moment-precise-range')(moment)
 
 if (!process.env.token) {
   console.log('Error: Specify token in environment')
@@ -32,7 +33,7 @@ controller.hears(['^!(nizza|nice)'], ['direct_message', 'direct_mention', 'menti
     .catch(() => reply())
 
   function reply(weatherResult) {
-    var d = moment.preciseDiff(moment('2018-03-08 12:30'), moment())
+    var d = preciseDiff(moment('2018-03-08 12:30'), moment())
     bot.reply(message, `Nice in ${d}!` + (weatherResult ? ` Current weather: ${weatherResult[0].current.temperature}˚C, ${weatherResult[0].current.skytext}` : ''))
   }
 })
