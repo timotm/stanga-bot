@@ -33,7 +33,7 @@ controller.hears(['^!(nizza|nice)'], ['direct_message', 'direct_mention', 'menti
     .catch(() => reply())
 
   function reply(weatherResult) {
-    var d = preciseDiff(moment('2018-03-08 12:30'), moment())
+    var d = preciseDiff(moment('2019-03-28 12:30'), moment())
     bot.reply(message, `Nice in ${d}!` + (weatherResult ? ` Current weather: ${weatherResult[0].current.temperature}˚C, ${weatherResult[0].current.skytext}` : ''))
   }
 })
